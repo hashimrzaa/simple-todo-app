@@ -1,0 +1,153 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(118, 118, 160);
+
+}
+
+.main {
+    width: auto;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.mar {
+    margin: 8px;
+}
+
+.todoTex {
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.in {
+    align-items: center;
+    justify-content: center;
+}
+
+.tasks {
+    
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    overflow: auto;
+    height:150px;
+
+
+}
+
+.dis {
+    display: flex;
+
+}
+
+.inp {
+    width: 310px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid rgb(161, 161, 161);
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    height: 38px;
+    width: 38px;
+    font-size: 30px;
+    text-align: center;
+    background-color: rgb(128, 64, 158);
+    border-radius: 5px;
+    margin-left: 3px;
+    color: white;
+    border: 0px solid;
+}
+
+.tas {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(226, 226, 226);
+    border-radius: 5px;
+    margin: 5px 10px 0px 10px;
+
+}
+
+
+.tasTex {
+
+    width: 340px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.del {
+    width: 40px;
+    height: 40px;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn:active {
+    background-color: rgb(168, 94, 202);
+}
+
+.del:active {
+    background-color: rgb(255, 212, 131);
+}
+
+.tex {
+    display: flex;
+    align-items: center;
+    width: 385px;
+
+}
+
+.texd {
+    width: 300px;
+    height: 20px;
+    padding: 10px;
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.clear {
+    cursor: pointer;
+    width: 65px;
+    border-radius: 5px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(128, 64, 158);
+    color: white;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+.clear:active {
+    background-color: rgb(161, 95, 192);
+
+}
+
+.none {
+    display: none;
+}
