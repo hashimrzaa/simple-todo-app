@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TODO APP</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(118, 118, 160);
+
+        }
+
+        .main {
+            width: auto;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            border-radius: 5px;
+            flex-direction: column;
+            justify-content: space-between;
+        
+        }
+
+        .mar {
+            margin: 8px;
+        }
+
+        .todoTex {
+            font-size: 40px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .in {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tasks {
+            
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            overflow: auto;
+            height:150px;
+
+
+        }
+
+        .dis {
+            display: flex;
+
+        }
+
+        .inp {
+            width: 310px;
+            font-size: 17px;
+            border-radius: 5px;
+            border: 1px solid rgb(161, 161, 161);
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            height: 38px;
+            width: 38px;
+            font-size: 30px;
+            text-align: center;
+            background-color: rgb(128, 64, 158);
+            border-radius: 5px;
+            margin-left: 3px;
+            color: white;
+            border: 0px solid;
+        }
+
+        .tas {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(226, 226, 226);
+            border-radius: 5px;
+            margin: 5px 10px 0px 10px;
+
+        }
+
+
+        .tasTex {
+
+            width: 340px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .del {
+            width: 40px;
+            height: 40px;
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .btn:active {
+            background-color: rgb(168, 94, 202);
+        }
+
+        .del:active {
+            background-color: rgb(255, 212, 131);
+        }
+
+        .tex {
+            display: flex;
+            align-items: center;
+            width: 385px;
+
+        }
+
+        .texd {
+            width: 300px;
+            height: 20px;
+            padding: 10px;
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .clear {
+            cursor: pointer;
+            width: 65px;
+            border-radius: 5px;
+            height: 38px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(128, 64, 158);
+            color: white;
+            font-size: 14px;
+            font-family: sans-serif;
+        }
+
+        .clear:active {
+            background-color: rgb(161, 95, 192);
+
+        }
+
+        .none {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div>
+            <div class="mar todoTex">TODO</div>
+            <div class="dis mar in">
+                <div class=""><input class="inp" type="text" placeholder="Add your new todo"></div>
+                <button class="btn">+</button>
+            </div>
+        </div>
+      
+        <div class="tasks">
+           
+        </div>
+
+        <div class="mar tex">
+            <div class="texd"></div>
+            <div class="clear">Clear All</div>
+        </div>
+    </div>
+
+    <script>
+
+        const input = document.querySelector('input')
+        const add = document.querySelector('button')
+        const div = document.querySelector('.tasks')
+        const clear = document.querySelector('.clear')
+        const text = document.querySelector('.texd')
+        const store = localStorage
+        let arr = []
+
+        let incrDecre = 0
+        // MAIN FUNCTION q
+        function main() {
+            if (!input.value == '') {
+                const a = document.createElement('div')
+                const b = document.createElement('div')
+                const c = document.createElement('div')
+                const i = document.createElement('i')
+                a.classList.add('tas')
+                b.classList.add('tasTex')
+                c.classList.add('del')
+                i.classList.add('material-icons')
+                i.innerText = 'delete'
+                div.appendChild(a)
+                a.appendChild(b)
+                a.appendChild(c)
+                c.appendChild(i)
+
+                arr.push(input.value)
+                b.innerText = input.value
+                input.value = ""
+                incrDecre++
+
+                c.addEventListener('click', function (event) {
+                    arr.pop()
+                    text.innerText = `you have ${arr.length} task on pending`
+                    incrDecre--
+                    this.parentElement.remove()
+                    for (let i = 0; i < arr.length; i++) {
+                        if (arr[i] == store[i]) {
+                            store.removeItem(i)
+                        }
+                    }
+                })
+                clear.addEventListener('click', function () {
+                    for (let i = 0; i < arr.length; i++) {
+                        c.parentElement.remove()
+                    }
+                    setTimeout(function () {
+                        arr.length = 0
+                    }, 100)
+                    incrDecre = 0
+                    text.innerText = `you have ${0} task on pending`
+                })
+                text.innerText = `you have ${arr.length} task on pending`
+            }
+        }
+        add.addEventListener('click', main)
+        document.addEventListener('keypress', function (event) {
+            const key = event.key
+            if (key == 'Enter') {
+                main()
+            }
+        })
+        text.innerText = `you have ${0} task on pending`
+    </script>
+</body>
+
+</html>
